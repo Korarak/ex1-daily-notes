@@ -1,30 +1,37 @@
-version: '3.8'
-
 services:
   backend:
-    build:
-      context: ./backend
+    container_name: flask-backend
+    build: ./backend
     ports:
-      - "5001:5000"
+      - "5000:5000"
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/daily_notes
-    restart: unless-stopped
+      - FLASK_ENV=production
     depends_on:
       - mongo
+    networks:
+      - daily-network
 
   frontend:
-    build:
-      context: ./frontend
+    container_name: nuxt-frontend
+    build: ./frontend
     ports:
-      - "3001:3000"
-    restart: unless-stopped
+      - "3000:3000"
+    networks:
+      - daily-network
 
   mongo:
     image: mongo:6
+    container_name: mongo-daily
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db
+      - mongo-data:/data/db
+    networks:
+      - daily-network
 
 volumes:
-  mongo_data:
+  mongo-data:
+
+networks:
+  daily-network:
+    driver: bridge
