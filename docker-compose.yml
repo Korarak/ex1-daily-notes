@@ -3,7 +3,7 @@ services:
     container_name: flask-backend
     build: ./backend
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       - FLASK_ENV=production
     depends_on:
@@ -15,7 +15,7 @@ services:
     container_name: nuxt-frontend
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "3001:3000"
     networks:
       - daily-network
 
