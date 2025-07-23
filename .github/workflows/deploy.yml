@@ -24,7 +24,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-backend:latest
 
       - name: 🚀 Trigger Portainer backend webhook
-        run: curl -X GET "${{ secrets.PORTAINER_WEBHOOK_BACKEND }}"
+        run: curl -X GET "${{ secrets.PORTAINER_WEBHOOK_URL }}"
 
       # ---------- Frontend ----------
       - name: 🧱 Build Frontend image
