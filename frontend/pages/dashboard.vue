@@ -20,6 +20,9 @@
 <script setup>
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
+import NoteCard from '@/components/NoteCard.vue' // หากยังไม่ได้ import
+
+const API_URL = import.meta.env.VITE_API_URL
 
 const title = ref('')
 const content = ref('')
@@ -27,7 +30,7 @@ const notes = ref([])
 
 const fetchNotes = async () => {
   const token = localStorage.getItem('token')
-  const res = await axios.get('http://localhost:5001/api/notes', {
+  const res = await axios.get(`${API_URL}/api/notes`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -38,7 +41,7 @@ const fetchNotes = async () => {
 const createNote = async () => {
   const token = localStorage.getItem('token')
   try {
-    await axios.post('http://localhost:5001/api/notes', {
+    await axios.post(`${API_URL}/api/notes`, {
       title: title.value,
       content: content.value
     }, {
@@ -56,7 +59,7 @@ const createNote = async () => {
 
 const deleteNote = async (id) => {
   const token = localStorage.getItem('token')
-  await axios.delete(`http://localhost:5001/api/notes/${id}`, {
+  await axios.delete(`${API_URL}/api/notes/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -66,4 +69,3 @@ const deleteNote = async (id) => {
 
 onMounted(fetchNotes)
 </script>
-

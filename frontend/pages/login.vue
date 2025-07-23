@@ -43,7 +43,7 @@ const router = useRouter()
 const handleLogin = async () => {
   errorMsg.value = ''
   try {
-    const res = await axios.post('http://localhost:5001/api/login', {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
       username: username.value,
       password: password.value
     })
