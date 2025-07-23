@@ -14,15 +14,12 @@ CORS(app)
 JWTManager(app)
 
 # เชื่อมต่อ MongoDB ด้วย mongoengine โดยตรง
-connect(
-    db=app.config["MONGODB_SETTINGS"]["db"],
-    host=app.config["MONGODB_SETTINGS"]["host"],
-    port=app.config["MONGODB_SETTINGS"]["port"]
-)
+# เชื่อม MongoDB ด้วย URI เดียว
+connect(host=app.config["MONGODB_SETTINGS"]["host"])
 
 # Register Blueprints
 app.register_blueprint(auth, url_prefix="/api")
 app.register_blueprint(notes, url_prefix="/api")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

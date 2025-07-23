@@ -1,9 +1,6 @@
-# config.py
 class Config:
     SECRET_KEY = 'your-secret-key'
     JWT_SECRET_KEY = 'your-jwt-secret'
     MONGODB_SETTINGS = {
-        'db': 'mario_notes',
-        'host': 'localhost',
-        'port': 27017
+        'host': 'mongodb://root:examplepassword@192.168.10.61:27019/my_notes_2?authSource=admin'
     }
