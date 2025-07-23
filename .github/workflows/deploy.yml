@@ -34,4 +34,4 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/nuxt-frontend:latest
 
       - name: 🚀 Trigger Portainer frontend webhook
-        run: curl -X GET "${{ secrets.PORTAINER_WEBHOOK_FRONTEND }}"
+        run: curl -X GET "${{ secrets.PORTAINER_WEBHOOK_URL }}"
