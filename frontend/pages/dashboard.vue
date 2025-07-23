@@ -27,7 +27,7 @@ const notes = ref([])
 
 const fetchNotes = async () => {
   const token = localStorage.getItem('token')
-  const res = await axios.get('http://localhost:5000/api/notes', {
+  const res = await axios.get('http://localhost:5001/api/notes', {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -38,7 +38,7 @@ const fetchNotes = async () => {
 const createNote = async () => {
   const token = localStorage.getItem('token')
   try {
-    await axios.post('http://localhost:5000/api/notes', {
+    await axios.post('http://localhost:5001/api/notes', {
       title: title.value,
       content: content.value
     }, {
@@ -56,7 +56,7 @@ const createNote = async () => {
 
 const deleteNote = async (id) => {
   const token = localStorage.getItem('token')
-  await axios.delete(`http://localhost:5000/api/notes/${id}`, {
+  await axios.delete(`http://localhost:5001/api/notes/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
